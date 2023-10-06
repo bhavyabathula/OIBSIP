@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+</head>
+<body>
+    <h1>Temperature Converter</h1>
+    <label for="inputTemperature">Enter temperature:</label>
+    <input type="number" id="inputTemperature"><br><br>
+     <label for="fromUnit">From:</label>
+    <select id="fromUnit">
+        <option value="celsius">Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+        <option value="kelvin">Kelvin</option>
+    </select>
+    <label for="toUnit">To:</label>
+    <select id="toUnit">
+        <option value="celsius">Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+        <option value="kelvin">Kelvin</option>
+    </select><br><br>
+    <button onclick="convertTemperature()">Convert</button>
+    <p>Result: <span id="result"></span></p>
+ <script>
+        function convertTemperature() {
+            var inputTemperature = parseFloat(document.getElementById("inputTemperature").value);
+            var fromUnit = document.getElementById("fromUnit").value;
+            var toUnit = document.getElementById("toUnit").value;
+            var resultElement = document.getElementById("result");
+            var result;
+            if (fromUnit === "celsius" && toUnit === "fahrenheit") {
+                result = (inputTemperature * 9/5) + 32;
+            } else if (fromUnit === "celsius" && toUnit === "kelvin") {
+                result = inputTemperature + 273.15;
+            } else if (fromUnit === "fahrenheit" && toUnit === "celsius") {
+                result = (inputTemperature - 32) * 5/9;
+            } else if (fromUnit === "fahrenheit" && toUnit === "kelvin") {
+                result = ((inputTemperature - 32) * 5/9) + 273.15;
+            } else if (fromUnit === "kelvin" && toUnit === "celsius") {
+                result = inputTemperature - 273.15;
+            } else if (fromUnit === "kelvin" && toUnit === "fahrenheit") {
+                result = ((inputTemperature - 273.15) * 9/5) + 32;
+            } else {
+                result = inputTemperature; 
+            }
+            
+            resultElement.textContent = result.toFixed(2); 
+        }
+    </script>
+</body>
+</html>
